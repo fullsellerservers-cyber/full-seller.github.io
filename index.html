@@ -1891,7 +1891,7 @@ const I18N = {
     partner_ph_upload: 'Нажмите для загрузки изображений', partner_ph_upload_limit: 'до 8 МБ · до 10 шт',
     partner_add_btn: 'Добавить товар', partner_clear: 'Очистить', partner_save_changes: 'Сохранить изменения',
     partner_edit: 'Изменить', partner_delete: 'Удалить',
-    size_male_socks: 'Мужские носки 41-43', size_female_socks: 'Женские носки 37-39',
+    size_male_socks: 'Мужские носки 41-47', size_female_socks: 'Женские носки 36-41',
     size_kid_1: 'Детские 0-1 год: рост 68-80', size_kid_2: 'Детские 2-3 года: рост 92-98 см',
     size_kid_3: 'Детские 4-6 лет: рост 104-116 см', size_kid_4: 'Детские 7-8 лет: рост 122-128 см',
     support_whatsapp_text: 'Здравствуйте! Я производитель, нужна поддержка.',
@@ -1979,7 +1979,7 @@ const I18N = {
     partner_ph_upload: 'Click to upload images', partner_ph_upload_limit: 'up to 8 MB · up to 10 pcs',
     partner_add_btn: 'Add product', partner_clear: 'Clear', partner_save_changes: 'Save changes',
     partner_edit: 'Edit', partner_delete: 'Delete',
-    size_male_socks: 'Men socks 41-43', size_female_socks: 'Women socks 37-39',
+    size_male_socks: 'Men socks 41-47', size_female_socks: 'Women socks 36-41',
     size_kid_1: 'Kids 0-1 year: height 68-80', size_kid_2: 'Kids 2-3 years: height 92-98 cm',
     size_kid_3: 'Kids 4-6 years: height 104-116 cm', size_kid_4: 'Kids 7-8 years: height 122-128 cm',
     support_whatsapp_text: "Hello! I'm a manufacturer, I need support.",
@@ -2066,7 +2066,7 @@ const I18N = {
     partner_ph_upload: 'Rasmlarni yuklash uchun bosing', partner_ph_upload_limit: '8 MB gacha · 10 tagacha',
     partner_add_btn: 'Mahsulot qo‘shish', partner_clear: 'Tozalash', partner_save_changes: 'O‘zgarishlarni saqlash',
     partner_edit: 'O‘zgartirish', partner_delete: 'O‘chirish',
-    size_male_socks: 'Erkaklar paypoqi 41-43', size_female_socks: 'Ayollar paypoqi 37-39',
+    size_male_socks: 'Erkaklar paypoqi 41-47', size_female_socks: 'Ayollar paypoqi 36-41',
     size_kid_1: 'Bolalar 0-1 yosh: bo‘y 68-80', size_kid_2: 'Bolalar 2-3 yosh: bo‘y 92-98 sm',
     size_kid_3: 'Bolalar 4-6 yosh: bo‘y 104-116 sm', size_kid_4: 'Bolalar 7-8 yosh: bo‘y 122-128 sm',
     support_whatsapp_text: 'Assalomu alaykum! Men ishlab chiqaruvchiman, yordam kerak.',
@@ -2467,29 +2467,29 @@ function applyPartnerMarkup(value, product) {
 
 /* === STATIC PRODUCTS === */
 const STATIC_SOCKS = [
-  { id:'static1', name:"Nike Everyday (Белые)", price:13, desc:"Классические белые носки Nike, технология Dri-FIT.", images:["67.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-43", brand:"Nike", rating:4.5, stock:500, category:'socks', audience:'male' },
-  { id:'static2', name:"Nike Everyday (Черные)", price:13, desc:"Спортивные черные носки Nike, отличная вентиляция.", images:["12344.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-43", brand:"Nike", rating:4.6, stock:500, category:'socks', audience:'male' },
-  { id:'static3', name:"Nike Everyday (Серые)", price:13, desc:"Универсальные серые носки Nike, Dri-FIT и мягкий пояс.", images:["69.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-43", brand:"Nike", rating:4.4, stock:500, category:'socks', audience:'male' },
-  { id:'static4', name:"Nike Everyday (Синие)", price:13, desc:"Тёмно-синие носки Nike, повседневный комфорт.", images:["1122.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-43", brand:"Nike", rating:4.3, stock:500, category:'socks', audience:'male' },
-  { id:'static5', name:"Adidas Cushioned (Белые)", price:13, desc:"Белые носки Adidas с мягкой подошвой.", images:["2121.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-43", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
-  { id:'static6', name:"Adidas Cushioned (Черные)", price:13, desc:"Черные носки Adidas, усиленная пятка и мысок.", images:["1212.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-43", brand:"Adidas", rating:4.7, stock:500, category:'socks', audience:'male' },
-  { id:'static7', name:"Adidas Cushioned (Серые)", price:13, desc:"Серые носки Adidas с амортизацией.", images:["1234.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-43", brand:"Adidas", rating:4.4, stock:500, category:'socks', audience:'male' },
-  { id:'static8', name:"Adidas Cushioned (Синие)", price:13, desc:"Синие носки Adidas с поддержкой свода стопы.", images:["4321.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-43", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
-     { id:'static8', name:"РЕКЛАМА", price:13, desc:"", images:["mm12.png"], material:"Хлопок 60%, Полиэстер 36%", size:"41-43", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
-  { id:'static9', name:"Puma Performance (Белые)", price:13, desc:"Спортивные белые носки Puma.", images:["60.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-43", brand:"Puma", rating:4.3, stock:500, category:'socks', audience:'male' },
-  { id:'static10', name:"Puma Performance (Черные)", price:13, desc:"Черные носки Puma для тренировок и отдыха.", images:["61.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-43", brand:"Puma", rating:4.6, stock:500, category:'socks', audience:'male' },
-  { id:'static11', name:"Puma Performance (Серые)", price:13, desc:"Серые носки Puma, дышащая сетка.", images:["пм.png"], material:"Хлопок 78%, Полиамид 18%", size:"41-43", brand:"Puma", rating:4.4, stock:500, category:'socks', audience:'male' },
-  { id:'static12', name:"Puma Performance (Синие)", price:13, desc:"Ярко-синие носки Puma с отводом влаги.", images:["11223.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-43", brand:"Puma", rating:4.2, stock:500, category:'socks', audience:'male' },
-  { id:'static13', name:"Fila Retro (Белые)", price:13, desc:"Белые носки Fila в ретро-стиле.", images:["63.jpg"], material:"Хлопок 80%, Эластан 5%", size:"37-39", brand:"Fila", rating:4.1, stock:500, category:'socks', audience:'male' },
-  { id:'static14', name:"Fila Retro (Черные)", price:13, desc:"Черные носки Fila.", images:["64.jpg"], material:"Хлопок 80%, Эластан 5%", size:"37-39", brand:"Fila", rating:4.5, stock:500, category:'socks', audience:'male' },
-  { id:'static15', name:"Fila Retro (Серые)", price:13, desc:"Серые ретро-носки Fila.", images:["65.jpg"], material:"Хлопок 80%, Эластан 5%", size:"37-39", brand:"Fila", rating:4.3, stock:500, category:'socks', audience:'male' },
-  { id:'static16', name:"Fila Retro (Синие)", price:13, desc:"Синие носки Fila.", images:["66.jpg"], material:"Хлопок 80%, Эластан 5%", size:"37-39", brand:"Fila", rating:4.4, stock:500, category:'socks', audience:'male' }
+  { id:'static1', name:"Nike Everyday (Белые)", price:13, desc:"Классические белые носки Nike, технология Dri-FIT.", images:["67.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-47", brand:"Nike", rating:4.5, stock:500, category:'socks', audience:'male' },
+  { id:'static2', name:"Nike Everyday (Черные)", price:13, desc:"Спортивные черные носки Nike, отличная вентиляция.", images:["12344.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-47", brand:"Nike", rating:4.6, stock:500, category:'socks', audience:'male' },
+  { id:'static3', name:"Nike Everyday (Серые)", price:13, desc:"Универсальные серые носки Nike, Dri-FIT и мягкий пояс.", images:["69.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-47", brand:"Nike", rating:4.4, stock:500, category:'socks', audience:'male' },
+  { id:'static4', name:"Nike Everyday (Синие)", price:13, desc:"Тёмно-синие носки Nike, повседневный комфорт.", images:["1122.jpg"], material:"Хлопок 75%, Полиэстер 22%", size:"41-47", brand:"Nike", rating:4.3, stock:500, category:'socks', audience:'male' },
+  { id:'static5', name:"Adidas Cushioned (Белые)", price:13, desc:"Белые носки Adidas с мягкой подошвой.", images:["2121.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-47", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
+  { id:'static6', name:"Adidas Cushioned (Черные)", price:13, desc:"Черные носки Adidas, усиленная пятка и мысок.", images:["1212.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-47", brand:"Adidas", rating:4.7, stock:500, category:'socks', audience:'male' },
+  { id:'static7', name:"Adidas Cushioned (Серые)", price:13, desc:"Серые носки Adidas с амортизацией.", images:["1234.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-47", brand:"Adidas", rating:4.4, stock:500, category:'socks', audience:'male' },
+  { id:'static8', name:"Adidas Cushioned (Синие)", price:13, desc:"Синие носки Adidas с поддержкой свода стопы.", images:["4321.jpg"], material:"Хлопок 60%, Полиэстер 36%", size:"41-47", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
+     { id:'static8', name:"РЕКЛАМА", price:13, desc:"", images:["mm12.png"], material:"Хлопок 60%, Полиэстер 36%", size:"41-47", brand:"Adidas", rating:4.5, stock:500, category:'socks', audience:'male' },
+  { id:'static9', name:"Puma Performance (Белые)", price:13, desc:"Спортивные белые носки Puma.", images:["60.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-47", brand:"Puma", rating:4.3, stock:500, category:'socks', audience:'male' },
+  { id:'static10', name:"Puma Performance (Черные)", price:13, desc:"Черные носки Puma для тренировок и отдыха.", images:["61.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-47", brand:"Puma", rating:4.6, stock:500, category:'socks', audience:'male' },
+  { id:'static11', name:"Puma Performance (Серые)", price:13, desc:"Серые носки Puma, дышащая сетка.", images:["пм.png"], material:"Хлопок 78%, Полиамид 18%", size:"41-47", brand:"Puma", rating:4.4, stock:500, category:'socks', audience:'male' },
+  { id:'static12', name:"Puma Performance (Синие)", price:13, desc:"Ярко-синие носки Puma с отводом влаги.", images:["11223.jpg"], material:"Хлопок 78%, Полиамид 18%", size:"41-47", brand:"Puma", rating:4.2, stock:500, category:'socks', audience:'male' },
+  { id:'static13', name:"Fila Retro (Белые)", price:13, desc:"Белые носки Fila в ретро-стиле.", images:["63.jpg"], material:"Хлопок 80%, Эластан 5%", size:"41-47", brand:"Fila", rating:4.1, stock:500, category:'socks', audience:'male' },
+  { id:'static14', name:"Fila Retro (Черные)", price:13, desc:"Черные носки Fila.", images:["64.jpg"], material:"Хлопок 80%, Эластан 5%", size:"41-47", brand:"Fila", rating:4.5, stock:500, category:'socks', audience:'male' },
+  { id:'static15', name:"Fila Retro (Серые)", price:13, desc:"Серые ретро-носки Fila.", images:["65.jpg"], material:"Хлопок 80%, Эластан 5%", size:"41-47", brand:"Fila", rating:4.3, stock:500, category:'socks', audience:'male' },
+  { id:'static16', name:"Fila Retro (Синие)", price:13, desc:"Синие носки Fila.", images:["66.jpg"], material:"Хлопок 80%, Эластан 5%", size:"41-47", brand:"Fila", rating:4.4, stock:500, category:'socks', audience:'male' }
 ];
 const STATIC_REGULAR_SOCKS = [
-  { id:'regular1', name:"Обычные носки (Белые)", price:13, desc:"Классические белые носки.", images:["82.jpg"], material:"Хлопок 80%", size:"41-43", brand:"Обычные", rating:4.0, stock:500, category:'regular', audience:'male' },
-  { id:'regular2', name:"Обычные носки (Черные)", price:13, desc:"Черные базовые носки.", images:["11111.jpg"], material:"Хлопок 80%", size:"41-43", brand:"Обычные", rating:4.1, stock:500, category:'regular', audience:'male' },
-  { id:'regular3', name:"Обычные носки (Серые)", price:13, desc:"Серые носки средней длины.", images:["2222.jpg"], material:"Хлопок 80%", size:"37-39", brand:"Обычные", rating:4.1, stock:500, category:'regular', audience:'male' },
-  { id:'regular4', name:"Обычные носки (Синие)", price:13, desc:"Синие носки на каждый день.", images:["222.jpg"], material:"Хлопок 80%", size:"37-39", brand:"Обычные", rating:4.0, stock:500, category:'regular', audience:'male' }
+  { id:'regular1', name:"Обычные носки (Белые)", price:13, desc:"Классические белые носки.", images:["82.jpg"], material:"Хлопок 80%", size:"41-47", brand:"Обычные", rating:4.0, stock:500, category:'regular', audience:'male' },
+  { id:'regular2', name:"Обычные носки (Черные)", price:13, desc:"Черные базовые носки.", images:["11111.jpg"], material:"Хлопок 80%", size:"41-47", brand:"Обычные", rating:4.1, stock:500, category:'regular', audience:'male' },
+  { id:'regular3', name:"Обычные носки (Серые)", price:13, desc:"Серые носки средней длины.", images:["2222.jpg"], material:"Хлопок 80%", size:"41-47", brand:"Обычные", rating:4.1, stock:500, category:'regular', audience:'male' },
+  { id:'regular4', name:"Обычные носки (Синие)", price:13, desc:"Синие носки на каждый день.", images:["222.jpg"], material:"Хлопок 80%", size:"41-47", brand:"Обычные", rating:4.0, stock:500, category:'regular', audience:'male' }
 ];
 const STATIC_TSHIRTS = [
   { id:'tshirt1', name:"Classic White (Белая)", price:145, desc:"Классическая белая футболка.", images:["11222.jpg"], material:"Хлопок 100%", size:"M, L, XL (50-54)", brand:"Nike", rating:4.6, stock:300, category:'tshirts', audience:'male' },
