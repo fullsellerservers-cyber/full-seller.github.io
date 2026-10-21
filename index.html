@@ -2578,7 +2578,7 @@ function setCurrency(code, save) {
   if (save !== false) localStorage.setItem('fullseller_currency', code);
   const btn = document.getElementById('currencyBtn');
   if (btn) btn.textContent = CURRENCY_LABELS[code] || '₽';
-  document.querySelectorAll('#mobileCurrencySwitch button').forEach(b => { b.classList.toggle('active', b.dataset.cur === code); });
+  document.querySelectorAll('#mobileCurrencySwitch button').forEach(b => b.classList.toggle('active', b.dataset.cur === code));
   try { renderCatalog(); } catch (e) {}
   if (document.getElementById('favoritesPage').classList.contains('active')) renderFavoritesModal();
   if (document.getElementById('cartPage').classList.contains('active')) renderCartModal();
@@ -2639,15 +2639,22 @@ function generateOrderText() {
   if (currentUser) text += `\n👤 ${currentUser.name || currentUser.email}`;
   return text;
 }
+
+// FIX #1: ensure Firebase Auth session before writing order + store authUid for phone users
 async function saveOrderToFirestore(orderData) {
   try {
+    try { await ensurePartnerFirebaseAuth(); } catch (e) {}
+    const authUid = (auth.currentUser && auth.currentUser.uid) ? auth.currentUser.uid : '';
     const ref = await db.collection('orders').add({
       ...orderData, createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      userId: currentUser.uid, userEmail: currentUser.email, userName: currentUser.name || ''
+      userId: currentUser.uid, userEmail: currentUser.email || '', userName: currentUser.name || '',
+      authUid: authUid
     });
     return ref.id;
-  } catch (e) { console.error(e); return null; }
+  } catch (e) { console.error('saveOrderToFirestore failed:', e); return null; }
 }
+
+// FIX #2: notify user if Firestore rejected the write
 async function sendOrderTo(messenger) {
   if (!currentUser) { openAuthModal(); return; }
   if (cart.length === 0) { showToast('—'); return; }
@@ -2658,26 +2665,38 @@ async function sendOrderTo(messenger) {
     orderItems.push({ productId: item.productId, name: p.name, price: fp, qty: item.qty, subtotal: sub });
   });
   const orderId = await saveOrderToFirestore({ items: orderItems, total, status:'new', date: new Date().toISOString() });
+  if (!orderId) showToast('Ошибка: заказ не сохранён в базе');
   let text = generateOrderText();
   text += orderId ? `\n\n#${orderId}` : '';
   const url = messenger === 'whatsapp' ? `https://wa.me/998958239490?text=${encodeURIComponent(text)}` : `https://t.me/fullsellertjmsh?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
-  cart = []; saveCart(); closeModal('orderModal'); showToast('OK');
+  cart = []; saveCart(); closeModal('orderModal');
+  if (orderId) showToast('OK');
 }
+
+// FIX #3: no orderBy — sort in JS, avoids composite index requirement
 async function loadUserOrders() {
   const container = document.getElementById('ordersHistoryContainer');
   if (!currentUser) { container.innerHTML = '<p>—</p>'; return; }
   container.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i></div>';
   try {
-    const snap = await db.collection('orders').where('userId', '==', currentUser.uid).orderBy('createdAt','desc').limit(10).get();
+    const snap = await db.collection('orders').where('userId', '==', currentUser.uid).get();
     const orders = []; snap.forEach(doc => orders.push({ id: doc.id, ...doc.data() }));
+    orders.sort((a, b) => {
+      const ta = a.createdAt && typeof a.createdAt.toMillis === 'function' ? a.createdAt.toMillis() : 0;
+      const tb = b.createdAt && typeof b.createdAt.toMillis === 'function' ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    });
     if (!orders.length) { container.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i>—</div>'; return; }
     const statusNames = { new:'New', processing:'In progress', shipped:'Shipped', delivered:'Delivered', cancelled:'Cancelled' };
-    container.innerHTML = orders.map(o => {
+    container.innerHTML = orders.slice(0, 10).map(o => {
       const date = o.createdAt ? new Date(o.createdAt.seconds * 1000).toLocaleDateString() : '—';
       return `<div class="order-item" onclick="openOrderDetail('${o.id}')"><div style="display:flex; justify-content:space-between; align-items:center; gap:12px;"><strong>#${o.id}</strong><span class="order-status ${o.status || 'new'}">${statusNames[o.status] || 'New'}</span></div><div style="margin-top:8px; color:var(--text-secondary); font-size:.8125rem;">${date} • ${o.items?.length || 0} • ${(o.total || 0).toFixed(2)} ₽</div></div>`;
     }).join('');
-  } catch (e) { container.innerHTML = '<p style="color:var(--danger);">Error</p>'; }
+  } catch (e) {
+    console.error('loadUserOrders failed:', e);
+    container.innerHTML = '<p style="color:var(--danger);">Error: ' + (e && e.message ? e.message : '') + '</p>';
+  }
 }
 window.openOrderDetail = async function (orderId) {
   const content = document.getElementById('orderDetailContent');
@@ -2759,15 +2778,25 @@ document.getElementById('adminGenDescBtn').addEventListener('click', () => {
   document.getElementById('adminDesc').value = gen;
 });
 
+// FIX #4: no orderBy — sort in JS, shows real error text
 async function renderAdminOrders() {
   const container = document.getElementById('adminOrdersList');
   container.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i></div>';
   try {
-    const snap = await db.collection('orders').orderBy('createdAt','desc').limit(20).get();
+    const snap = await db.collection('orders').get();
     const orders = []; snap.forEach(doc => orders.push({ id: doc.id, ...doc.data() }));
-    if (!orders.length) { container.innerHTML = '<p>—</p>'; return; }
-    container.innerHTML = `<table class="admin-table"><thead><tr><th>ID</th><th>User</th><th>Sum</th><th>Status</th><th>Date</th><th>Act</th></tr></thead><tbody>${orders.map(o => `<tr><td>${o.id}</td><td>${o.userName || o.userEmail || '—'}</td><td>${(o.total || 0).toFixed(2)} ₽</td><td><span class="order-status ${o.status || 'new'}">${o.status || 'new'}</span></td><td>${o.createdAt ? new Date(o.createdAt.seconds * 1000).toLocaleDateString() : '—'}</td><td><select onchange="updateOrderStatus('${o.id}', this.value)"><option value="new" ${o.status === 'new' ? 'selected' : ''}>New</option><option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Processing</option><option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Shipped</option><option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option><option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancelled</option></select></td></tr>`).join('')}</tbody></table>`;
-  } catch (e) { container.innerHTML = '<p style="color:var(--danger);">Error</p>'; }
+    orders.sort((a, b) => {
+      const ta = a.createdAt && typeof a.createdAt.toMillis === 'function' ? a.createdAt.toMillis() : 0;
+      const tb = b.createdAt && typeof b.createdAt.toMillis === 'function' ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    });
+    const list = orders.slice(0, 20);
+    if (!list.length) { container.innerHTML = '<p>—</p>'; return; }
+    container.innerHTML = `<table class="admin-table"><thead><tr><th>ID</th><th>User</th><th>Sum</th><th>Status</th><th>Date</th><th>Act</th></tr></thead><tbody>${list.map(o => `<tr><td>${o.id}</td><td>${o.userName || o.userEmail || '—'}</td><td>${(o.total || 0).toFixed(2)} ₽</td><td><span class="order-status ${o.status || 'new'}">${o.status || 'new'}</span></td><td>${o.createdAt ? new Date(o.createdAt.seconds * 1000).toLocaleDateString() : '—'}</td><td><select onchange="updateOrderStatus('${o.id}', this.value)"><option value="new" ${o.status === 'new' ? 'selected' : ''}>New</option><option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Processing</option><option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Shipped</option><option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option><option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancelled</option></select></td></tr>`).join('')}</tbody></table>`;
+  } catch (e) {
+    console.error('renderAdminOrders failed:', e);
+    container.innerHTML = '<p style="color:var(--danger);">Error: ' + (e && e.message ? e.message : '') + '</p>';
+  }
 }
 window.updateOrderStatus = async function (orderId, newStatus) {
   try { await db.collection('orders').doc(orderId).update({ status: newStatus }); showToast('OK'); }
