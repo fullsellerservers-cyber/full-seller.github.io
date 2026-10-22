@@ -288,7 +288,7 @@ body.dark .hero{background:radial-gradient(120% 90% at 88% 0%,rgba(232,93,4,.16)
 .product-card{position:relative;display:flex;flex-direction:column;height:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);}
 .product-card:hover{transform:translateY(-6px);border-color:var(--border-2);box-shadow:var(--sh-lg);}
 .product-card__image-wrap{position:relative;aspect-ratio:5/6;width:100%;background:var(--bg-sunken);overflow:hidden;}
-.product-card__image-wrap>img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease);}
+.product-card__image-wrap>img{width:100%;height:100%;object-fit:contain;background:var(--bg-sunken);transition:transform .55s var(--ease);}
 .product-card:hover .product-card__image-wrap>img{transform:scale(1.05)}
 .product-card__image-wrap>i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3.25rem;color:var(--accent);opacity:.35;}
 .product-card__badge{position:absolute;top:12px;left:12px;z-index:2;padding:5px 10px;border-radius:var(--r-pill);background:var(--danger);color:#fff;font-size:.6875rem;font-weight:700;letter-spacing:.02em;box-shadow:0 4px 12px -4px rgba(220,38,38,.6);}
@@ -461,7 +461,7 @@ body.page-favorites #favoritesPage,body.page-cart #cartPage,body.page-profile #p
 .product-detail__gallery{position:relative;aspect-ratio:1/1;overflow:hidden}
 .product-detail__gallery .product-page__slides{display:flex;height:100%;transition:transform .38s var(--ease)}
 .product-detail__gallery .product-page__slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--bg-sunken);}
-.product-detail__gallery .product-page__slide img{width:100%;height:100%;object-fit:cover}
+.product-detail__gallery .product-page__slide img{width:100%;height:100%;object-fit:contain;background:var(--bg-sunken);}
 .product-detail__gallery .product-page__slide--empty{color:var(--muted);font-size:3rem}
 .product-page__slider-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gallery-btn-bg);color:var(--text);box-shadow:var(--sh-md);font-size:1rem;transition:.2s var(--ease);}
 .product-page__slider-btn:hover{background:var(--accent);color:#fff}
@@ -559,7 +559,7 @@ body.dark .order-status.cancelled{background:#5C1A1A;color:#FCA5A5}
 .admin-table .btn,.admin-table .btn-danger{min-height:32px}
 .admin-image-upload{border:2px dashed var(--border-2);border-radius:var(--r);padding:24px;text-align:center;cursor:pointer;transition:.2s var(--ease)}
 .admin-image-upload:hover{border-color:var(--accent);background:var(--accent-soft)}
-.admin-image-preview{max-width:140px;max-height:140px;border-radius:12px;object-fit:cover;display:none;margin:12px auto}
+.admin-image-preview{max-width:140px;max-height:140px;border-radius:12px;object-fit:contain;background:var(--bg-sunken);display:none;margin:12px auto}
 .admin-upload-progress{font-size:.8125rem;color:var(--accent);font-weight:600;margin-top:8px;min-height:1.2em}
 .admin-upload-actions{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .admin-upload-actions button{padding:6px 14px;font-size:.75rem;min-height:32px}
@@ -593,7 +593,7 @@ body.dark .order-status.cancelled{background:#5C1A1A;color:#FCA5A5}
 .partner-product-card:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
 .partner-product-card h4{font-size:1rem;margin-bottom:6px;line-height:1.3}
 .partner-product-card .pc-img{width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:var(--bg-sunken);margin-bottom:12px;display:flex;align-items:center;justify-content:center;color:var(--border-2);font-size:2rem;position:relative;}
-.partner-product-card .pc-img img{width:100%;height:100%;object-fit:cover}
+.partner-product-card .pc-img img{width:100%;height:100%;object-fit:contain;background:var(--bg-sunken);}
 .partner-product-card .pc-img-count{position:absolute;top:8px;right:8px;padding:3px 9px;border-radius:var(--r-pill);background:rgba(28,25,23,.72);color:#fff;font-size:.6875rem;font-weight:700;letter-spacing:.02em;}
 .partner-product-card .pc-category{display:inline-block;padding:3px 10px;border-radius:var(--r-pill);background:var(--accent-soft);color:var(--accent-600);font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;width:fit-content;}
 .partner-product-card .pc-desc{color:var(--text-2);font-size:.8125rem;line-height:1.5;margin-bottom:12px;flex:1;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
@@ -616,7 +616,7 @@ body.dark .order-status.cancelled{background:#5C1A1A;color:#FCA5A5}
 .partner-images-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;margin-top:14px}
 .partner-image-item{position:relative;aspect-ratio:1}
 .partner-image-item .partner-image-wrap{width:100%;height:100%;border-radius:12px;overflow:hidden;background:var(--bg-sunken);border:1px solid var(--border);transition:border-color .2s var(--ease),box-shadow .2s var(--ease);}
-.partner-image-item .partner-image-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.partner-image-item .partner-image-wrap img{width:100%;height:100%;object-fit:contain;display:block;background:var(--bg-sunken);}
 .partner-image-item .remove-img{position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--danger);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8125rem;line-height:1;cursor:pointer;border:2px solid var(--card);z-index:3;box-shadow:0 2px 6px rgba(0,0,0,.25);}
 .partner-image-item .remove-img:hover{transform:scale(1.12);background:var(--danger-hover)}
 .partner-image-item .img-badge{position:absolute;bottom:6px;left:6px;padding:2px 8px;border-radius:6px;background:rgba(0,0,0,.72);color:#fff;font-size:.625rem;font-weight:700;letter-spacing:.02em;z-index:2;pointer-events:none;}
@@ -679,7 +679,7 @@ body.dark .fs-autodetect-chip{background:rgba(232,93,4,.15)}
   .category-filter-btn,.brand-filter-btn,.audience-filter-btn{padding:8px 14px;font-size:.75rem}
   .catalog-title{margin-top:4px}
   .product-card__image-wrap{aspect-ratio:1/1;padding:0;background:transparent;overflow:hidden}
-  .product-card__image-wrap>img{width:100%;height:100%;object-fit:cover;border-radius:0;background:transparent;transform:none !important}
+  .product-card__image-wrap>img{width:100%;height:100%;object-fit:contain;border-radius:0;background:transparent;transform:none !important}
   .product-card:hover .product-card__image-wrap>img{transform:none !important}
   .product-card__body{padding:12px 12px 14px;gap:4px}
   .product-card__name{font-size:.8125rem;min-height:2.4em}
@@ -1513,7 +1513,7 @@ const I18N = {
     trust_min_t: '1 мешок = 700 пар', trust_min_s: 'минимальный заказ',
     trust_countries_t: 'РФ и Таджикистан', trust_countries_s: 'проверенное карго',
     trust_quality_t: 'Проверенное качество', trust_quality_s: 'контроль на фабрике',
-    cat_all: 'Все товары', cat_socks: 'Носки', cat_tshirts: 'Футболки', cat_underwear: 'Шорты / Штаны / Трусы',
+    cat_all: 'Все товары', cat_socks: 'Носки', cat_regular: 'Обычные носки', cat_tshirts: 'Футболки', cat_underwear: 'Шорты / Штаны / Трусы',
     cat_shorts: 'Шорты', cat_pants: 'Штаны', cat_hats: 'Шапки', cat_shoes: 'Обувь',
     cat_winter: 'Зимняя одежда', cat_kids_clothes: 'Детская одежда', cat_other: 'Прочее',
     fs_ad_prefix: 'Определено автоматически:',
@@ -1606,7 +1606,7 @@ const I18N = {
     trust_min_t: '1 bag = 700 pairs', trust_min_s: 'minimum order',
     trust_countries_t: 'Russia & Tajikistan', trust_countries_s: 'verified cargo',
     trust_quality_t: 'Verified quality', trust_quality_s: 'factory control',
-    cat_all: 'All products', cat_socks: 'Socks', cat_tshirts: 'T-shirts', cat_underwear: 'Shorts / Pants / Underwear',
+    cat_all: 'All products', cat_socks: 'Socks', cat_regular: 'Regular socks', cat_tshirts: 'T-shirts', cat_underwear: 'Shorts / Pants / Underwear',
     cat_shorts: 'Shorts', cat_pants: 'Pants', cat_hats: 'Hats', cat_shoes: 'Shoes',
     cat_winter: 'Winter wear', cat_kids_clothes: 'Kids clothing', cat_other: 'Other',
     fs_ad_prefix: 'Auto-detected:',
@@ -1700,7 +1700,7 @@ const I18N = {
     trust_min_t: '1 qop = 700 juft', trust_min_s: 'minimal buyurtma',
     trust_countries_t: 'Rossiya va Tojikiston', trust_countries_s: 'tekshirilgan kargo',
     trust_quality_t: 'Tekshirilgan sifat', trust_quality_s: 'fabrikada nazorat',
-    cat_all: 'Barcha mahsulotlar', cat_socks: 'Paypoqlar', cat_tshirts: 'Futbolkalar', cat_underwear: 'Shortik / Shim / Ichki kiyim',
+    cat_all: 'Barcha mahsulotlar', cat_socks: 'Paypoqlar', cat_regular: 'Oddiy paypoqlar', cat_tshirts: 'Futbolkalar', cat_underwear: 'Shortik / Shim / Ichki kiyim',
     cat_shorts: 'Shortik', cat_pants: 'Shim', cat_hats: 'Shapkalar', cat_shoes: 'Poyabzal',
     cat_winter: 'Qishki kiyim', cat_kids_clothes: 'Bolalar kiyimi', cat_other: 'Boshqa',
     fs_ad_prefix: 'Avtomatik aniqlandi:',
@@ -2081,7 +2081,7 @@ let currentUser = null;
 let currentCategory = 'all';
 let currentBrandFilter = 'all';
 let currentAudienceFilter = 'all';
-let allProducts = { socks: [], regular: [], tshirts: [], underwear: [] };
+let allProducts = { socks: [], regular: [], tshirts: [], underwear: [], shorts: [], pants: [], hats: [], shoes: [], winter: [], kids_clothes: [], other: [] };
 let cart = JSON.parse(localStorage.getItem('fullseller_cart')) || [];
 let favorites = JSON.parse(localStorage.getItem('fullseller_favorites')) || [];
 let allReviews = [];
@@ -2253,23 +2253,35 @@ function updateBrandFilterVisibility() {
 
 function updateSubtitle() {
   const subtitle = document.getElementById('catalogSubtitle'); if (!subtitle) return;
-  const names = {
-    ru: { all:'ВСЕ ТОВАРЫ ОПТОМ ОТ ПРОИЗВОДИТЕЛЕЙ', socks:'НОСКИ ОПТОМ ОТ ПРОИЗВОДИТЕЛЕЙ', regular:'ОБЫЧНЫЕ НОСКИ ОПТОМ', tshirts:'ФУТБОЛКИ ОПТОМ', underwear:'ТРУСЫ ОПТОМ' },
-    en: { all:'ALL PRODUCTS WHOLESALE FROM FACTORIES', socks:'SOCKS WHOLESALE FROM FACTORIES', regular:'REGULAR SOCKS WHOLESALE', tshirts:'T-SHIRTS WHOLESALE', underwear:'UNDERWEAR WHOLESALE' },
-    uz: { all:'BARCHA MAHSULOTLAR FABRIKALARDAN', socks:'PAYPOQLAR ULGURJI', regular:'ODDIY PAYPOQLAR ULGURJI', tshirts:'FUTBOLKALAR ULGURJI', underwear:'ICHKI KIYIM ULGURJI' }
-  };
-  const langDict = names[currentLang] || names.ru;
-  subtitle.textContent = langDict[currentCategory] || langDict.all;
+  if (currentCategory === 'all') {
+    subtitle.textContent = {
+      ru: 'ВСЕ ТОВАРЫ ОПТОМ ОТ ПРОИЗВОДИТЕЛЕЙ',
+      en: 'ALL PRODUCTS WHOLESALE FROM FACTORIES',
+      uz: 'BARCHA MAHSULOTLAR FABRIKALARDAN'
+    }[currentLang] || 'ВСЕ ТОВАРЫ ОПТОМ ОТ ПРОИЗВОДИТЕЛЕЙ';
+  } else {
+    const catKey = currentCategory === 'regular' ? 'cat_socks' : 'cat_' + currentCategory;
+    const catName = t(catKey).toUpperCase();
+    subtitle.textContent = {
+      ru: catName + ' ОПТОМ ОТ ПРОИЗВОДИТЕЛЕЙ',
+      en: catName + ' WHOLESALE FROM FACTORIES',
+      uz: catName + ' ULGURJI'
+    }[currentLang] || catName;
+  }
 }
 
 function renderCatalog() {
   const grid = document.getElementById('catalogGrid'); if (!grid) return;
   let products = [];
   if (currentCategory === 'all') {
-    products = [...allProducts.socks, ...allProducts.regular, ...allProducts.tshirts, ...allProducts.underwear];
+    for (let cat in allProducts) {
+      products = products.concat(allProducts[cat]);
+    }
     products = shuffleArray(products);
   } else if (currentCategory === 'socks') {
     products = [...allProducts.socks, ...allProducts.regular];
+  } else if (currentCategory === 'underwear') {
+    products = [...(allProducts.underwear || []), ...(allProducts.shorts || []), ...(allProducts.pants || [])];
   } else {
     products = allProducts[currentCategory] || [];
   }
@@ -2518,7 +2530,7 @@ function loadStaticProducts() {
 function mergeFirestore(collectionName, key) {
   db.collection(collectionName).onSnapshot(snap => {
     const baseMap = { products: STATIC_SOCKS, tshirts: STATIC_TSHIRTS, underwear: STATIC_UNDERWEAR };
-    allProducts[key] = baseMap[collectionName].map(s => ({ ...s }));
+    allProducts[key] = (baseMap[collectionName] || []).map(s => ({ ...s }));
     snap.forEach(doc => {
       const data = doc.data();
       const idx = allProducts[key].findIndex(p => p.id === doc.id);
@@ -2570,6 +2582,13 @@ function subscribeToAllProducts() {
   mergeFirestore('products', 'socks');
   mergeFirestore('tshirts', 'tshirts');
   mergeFirestore('underwear', 'underwear');
+  mergeFirestore('shorts', 'shorts');
+  mergeFirestore('pants', 'pants');
+  mergeFirestore('hats', 'hats');
+  mergeFirestore('shoes', 'shoes');
+  mergeFirestore('winter', 'winter');
+  mergeFirestore('kids_clothes', 'kids_clothes');
+  mergeFirestore('other', 'other');
 }
 
 function setCurrency(code, save) {
@@ -3447,7 +3466,7 @@ async function loadPartnerProducts() {
       renderPartnerProductCardsLocale();
     }
   }, LOAD_TIMEOUT_MS);
-  const collections = ['products','tshirts','underwear'];
+  const collections = ['products', 'tshirts', 'underwear', 'shorts', 'pants', 'hats', 'shoes', 'winter', 'kids_clothes', 'other'];
   try {
     for (const col of collections) {
       const snap = await db.collection(col).where('partnerId','==',session.partnerId).get();
@@ -3560,8 +3579,9 @@ async function addPartnerProduct() {
     clearPartnerForm(); switchPartnerTab('list'); loadPartnerProducts();
   } catch (e) {
     let msg = e && e.message ? e.message : 'Error';
-    if (/permission|insufficient/i.test(msg)) msg = 'Firestore permission denied';
+    if (/permission|insufficient/i.test(msg)) msg = 'Firestore permission denied. Проверьте правила Firebase.';
     showToast('Err: ' + msg);
+    console.error('Add product error:', e);
   } finally {
     btn.disabled = false;
     if (partnerEditingId) btn.innerHTML = '<i class="fas fa-check"></i> <span>' + t('partner_save_changes') + '</span>';
